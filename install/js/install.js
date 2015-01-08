@@ -95,7 +95,7 @@ InstallScript.prototype.main = function() {
 InstallScript.prototype.step1 = function() {
 	var self = this;
 	var backAction = 'main';
-	var nextAction = 'step2';
+	var nextAction = 'step3';
 
 	$('#back').click(function(){
 		$(this).attr('disabled', 'disabled');
@@ -116,67 +116,67 @@ InstallScript.prototype.step1 = function() {
 	})
 }
 
-InstallScript.prototype.step2 = function() {
-	var self = this;
-	var backAction = 'step1';
-	var nextAction = 'setupConfirmation';
+// InstallScript.prototype.step2 = function() {
+// 	var self = this;
+// 	var backAction = 'step1';
+// 	var nextAction = 'setupConfirmation';
 
-	$('#back').click(function(){
-		$(this).attr('disabled', 'disabled');
-		self.goTo(backAction);
-	})
+// 	$('#back').click(function(){
+// 		$(this).attr('disabled', 'disabled');
+// 		self.goTo(backAction);
+// 	})
 
-	$('#test-connection, #next').click(function(){
-		$(this).attr('disabled', 'disabled');
-		self.setConnSett();
-		if (!self.validate()) {
-			$(this).removeAttr('disabled');
-			return;
-		}
-		self.showLoading();
+// 	$('#test-connection, #next').click(function(){
+// 		$(this).attr('disabled', 'disabled');
+// 		self.setConnSett();
+// 		if (!self.validate()) {
+// 			$(this).removeAttr('disabled');
+// 			return;
+// 		}
+// 		self.showLoading();
 
-		var btn = $(this);
-		self.checkSett({
-			success: function(data) {
-				if (data.success) {
-					if (btn.attr('id') == 'next') self.goTo(nextAction);
-					else self.showMsg({msg: self.getLang('All Settings correct', 'messages')});
-				}
-				else {
-					$('#next').removeAttr('disabled');
-				}
-				$('#test-connection').removeAttr('disabled');
-				self.hideLoading();
-			}, // success END
-			error: function() {
-				$('#next').removeAttr('disabled');
-				$('#test-connection').removeAttr('disabled');
-				self.hideLoading();
-			}, // error END
+// 		var btn = $(this);
+// 		self.checkSett({
+// 			success: function(data) {
+// 				if (data.success) {
+// 					if (btn.attr('id') == 'next') self.goTo(nextAction);
+// 					else self.showMsg({msg: self.getLang('All Settings correct', 'messages')});
+// 				}
+// 				else {
+// 					$('#next').removeAttr('disabled');
+// 				}
+// 				$('#test-connection').removeAttr('disabled');
+// 				self.hideLoading();
+// 			}, // success END
+// 			error: function() {
+// 				$('#next').removeAttr('disabled');
+// 				$('#test-connection').removeAttr('disabled');
+// 				self.hideLoading();
+// 			}, // error END
 
-		}) // checkSett END
+// 		}) // checkSett END
 
-	})
-}
+// 	})
+// }
 
-InstallScript.prototype.setupConfirmation = function() {
-	var self = this;
-	var backAction = 'step2';
-	var nextAction = 'step3';
+// InstallScript.prototype.setupConfirmation = function() {
+// 	var self = this;
+// 	var backAction = 'step2';
+// 	var nextAction = 'step3';
 
-	$('#back').click(function(){
+// 	$('#back').click(function(){
 
-		$(this).attr('disabled', 'disabled');
-		self.goTo(backAction);
-	})
+// 		$(this).attr('disabled', 'disabled');
+// 		self.goTo(backAction);
+// 	})
 
-	$("#next").click(function(){
+// 	$("#next").click(function(){
 
-		$(this).attr('disabled', 'disabled');
-		self.showLoading();
-		self.actionsChecking();
-	})
-}
+// 		$(this).attr('disabled', 'disabled');
+// 		self.showLoading();
+// 		self.actionsChecking();
+// 	})
+// }
 
 InstallScript.prototype.step3 = function() {
 	var self = this;
